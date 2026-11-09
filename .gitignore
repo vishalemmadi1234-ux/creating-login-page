@@ -1,0 +1,24 @@
+
+# Maven build
+target/
+
+# Credentials and environment files
+.env
+.env.*
+!.env.example
+application-local.properties
+*.pem
+*.key
+
+# Logs and backups
+*.log
+startup-log.txt
+*.bak
+*.zip
+
+# IDE
+.vscode/
+.idea/
+
+# Windows
+Thumbs.db

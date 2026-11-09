@@ -1,0 +1,135 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title>Create Account | Climentos</title>
+    <link rel="stylesheet" href="../css/auth.css">
+    <script src="../js/auth.js" defer></script>
+</head>
+<body>
+    <main class="auth-layout">
+
+        <section class="hero-panel">
+            <div class="brand">
+                <span class="brand-icon">C</span>
+                <span>Climentos</span>
+
+            </div>
+
+            <div class="hero-content">
+                <span class="eyebrow">GET STARTED</span>
+                <h1>Everything starts with an account.</h1>
+                <p>
+                    A secure and simple way to access
+                    your personal dashboard.
+                </p>
+                <div class="hero-feature">
+                    <span class="feature-icon">&#10003;</span>
+                    Simple account management
+                </div>
+                <div class="hero-feature">
+                    <span class="feature-icon">&#10003;</span>
+                    Secure password protection
+                </div>
+            </div>
+
+            <p class="hero-footer">Built with Spring Boot & MySQL</p>
+        </section>
+
+        <section class="form-panel">
+            <div class="form-container">
+
+                <span class="eyebrow blue">WELCOME</span>
+                <h2>Create an account</h2>
+                <p class="subtitle">
+                    Enter your details to get started.
+                </p>
+
+                <div id="demoNotice"
+                     class="notice" role="status" hidden></div>
+
+                <form id="registerForm">
+                    <div class="field">
+                        <label for="name">Full name</label>
+                        <input id="name" name="name"
+                               type="text"
+                               placeholder="Enter your full name"
+                               autocomplete="name"
+                               maxlength="100"
+                               required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email address</label>
+                        <input id="email" name="email"
+                               type="email"
+                               placeholder="you@example.com"
+                               autocomplete="email"
+                               maxlength="255"
+                               required>
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <div class="input-wrap">
+                            <input id="password" name="password"
+                                   type="password"
+                                   placeholder="Create a password"
+                                   autocomplete="new-password"
+                                   minlength="8" maxlength="72"
+                                   required>
+                            <button type="button"
+                                    class="toggle-password"
+                                    data-toggle="password"
+                                    aria-label="Show password">
+                                Show
+                            </button>
+                        </div>
+                        <div class="strength-track">
+                            <div id="strengthBar"></div>
+                        </div>
+                        <small id="strengthLabel">
+                            Use at least 8 characters.
+                        </small>
+                    </div>
+
+                    <div class="field">
+                        <label for="confirmPassword">
+                            Confirm password
+                        </label>
+                        <div class="input-wrap">
+                            <input id="confirmPassword"
+                                   name="confirmPassword"
+                                   type="password"
+                                   placeholder="Re-enter password"
+                                   autocomplete="new-password"
+                                   required>
+                            <button type="button"
+                                    class="toggle-password"
+                                    data-toggle="confirmPassword"
+                                    aria-label="Show password">
+                                Show
+                            </button>
+                        </div>
+                        <small id="matchMessage" role="status"></small>
+                    </div>
+
+                    <button type="submit" class="primary-btn">
+                        Create account
+                    </button>
+                </form>
+
+                <p class="auth-footer">
+                    Already have an account?
+                    <a href="login.html">Sign in</a>
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+

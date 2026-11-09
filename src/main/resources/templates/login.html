@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="referrer" content="no-referrer">
+ <title>Climentos · Account access</title>
+ <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+ <link rel="stylesheet" href="/css/style.css">
+ <script src="/js/app.js" defer></script>
+</head>
+<body>
+<main class="auth-shell">
+<aside class="showcase login-showcase">
+  <!-- Atmospheric workspace photo is optional; gradient and animated art work offline too. -->
+  <div class="login-photo" aria-hidden="true"></div>
+  <div class="login-ambient login-ambient-a" aria-hidden="true"></div>
+  <div class="login-ambient login-ambient-b" aria-hidden="true"></div>
+
+  <div class="mobile-security-badge" aria-hidden="true"><svg class="icon"><use href="/icons.svg#lock"></use></svg></div>
+  <a class="brand" href="/" aria-label="Climentos home">
+    <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="/icons.svg#shield"></use></svg></span>
+    <span>Climentos</span>
+  </a>
+
+  <div class="login-stage">
+    <div class="stage-copy">
+      <span class="kicker"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#sparkles"></use></svg> YOUR SPACE, YOUR WAY</span>
+      <h1>Welcome to<br><em>Climentos.</em></h1>
+      <p>Everything you need, in one secure workspace.</p>
+    </div>
+
+    <div class="security-scene" aria-hidden="true">
+      <div class="scene-orbit orbit-one"></div>
+      <div class="scene-orbit orbit-two"></div>
+      <div class="scene-glow"></div>
+
+      <div class="scene-screen">
+        <div class="screen-top"><span></span><span></span><span></span></div>
+        <div class="screen-inner">
+          <div class="screen-lock"><svg class="icon" aria-hidden="true"><use href="/icons.svg#shield"></use></svg></div>
+          <span class="screen-line screen-line-long"></span>
+          <span class="screen-line screen-line-short"></span>
+          <div class="screen-progress"><span></span></div>
+        </div>
+      </div>
+      <div class="scene-base"></div>
+
+      <div class="floating-status floating-status-a"><svg class="icon" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg><span>Account protected</span></div>
+      <div class="floating-status floating-status-b"><svg class="icon" aria-hidden="true"><use href="/icons.svg#fingerprint"></use></svg><span>Private by design</span></div>
+      <div class="floating-status floating-status-c"><svg class="icon" aria-hidden="true"><use href="/icons.svg#sparkles"></use></svg><span>Welcome aboard</span></div>
+    </div>
+
+    <div class="login-trust-row" aria-label="Why Climentos">
+      <span><svg class="icon" aria-hidden="true"><use href="/icons.svg#shield"></use></svg> Secure</span>
+      <span><svg class="icon" aria-hidden="true"><use href="/icons.svg#fingerprint"></use></svg> Private</span>
+      <span><svg class="icon" aria-hidden="true"><use href="/icons.svg#dashboard"></use></svg> Seamless</span>
+    </div>
+  </div>
+  <div class="showcase-foot">Built for people. Protected by design.</div>
+</aside>
+
+<section class="auth-area"><div class="form-wrap" data-auth-root>
+  <nav class="auth-switch" aria-label="Account options" th:if="${activeView != 'reset' and activeView != 'invalid'}">
+    <a href="/login" data-auth-target="login" th:classappend="${activeView == 'login'} ? ' is-current' : ''">Sign in</a>
+    <a href="/login?view=register" data-auth-target="register" th:classappend="${activeView == 'register'} ? ' is-current' : ''">Create account</a>
+  </nav>
+
+  <section class="auth-panel" data-auth-panel="login" aria-labelledby="auth-login-heading" th:classappend="${activeView == 'login'} ? ' is-active' : ''">
+    <div class="form-hero-icon" aria-hidden="true"><svg class="icon"><use href="/icons.svg#fingerprint"></use></svg></div>
+    <span class="eyebrow">CLIMENTOS WORKSPACE</span>
+    <h1 class="heading" id="auth-login-heading">Welcome back</h1>
+    <p class="description">Enter your details and pick up where you left off.</p>
+    <div class="notice" th:if="${param.registered != null}"><svg class="icon" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg><span>Account created successfully. You can now sign in.</span></div>
+    <div class="notice" th:if="${param.reset != null}"><svg class="icon" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg><span>Password updated. Sign in with your new password.</span></div>
+    <div class="notice" th:if="${param.logout != null}"><svg class="icon" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg><span>You have signed out successfully.</span></div>
+    <div class="notice error" th:if="${param.error != null}"><svg class="icon" aria-hidden="true"><use href="/icons.svg#alert"></use></svg><span>Invalid email or password. Please try again.</span></div>
+    <form th:action="@{/login}" method="post">
+<div class="form-field"><label for="login-email">Email address</label><div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#mail"></use></svg><input id="login-email" name="email" type="email" placeholder="you@example.com" autocomplete="username" required maxlength="255"></div></div>
+<div class="form-field"><label for="login-password">Password</label><div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg><input id="login-password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required><button type="button" class="toggle" data-toggle="login-password" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div></div>
+<div class="utility-row"><a class="secondary-link" href="/login?view=forgot" data-auth-target="forgot"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#key"></use></svg> Forgot password?</a></div>
+<button type="submit" class="btn-primary">Sign in securely <svg class="icon " aria-hidden="true"><use href="/icons.svg#arrow-right"></use></svg></button>
+</form>
+    <p class="form-footer">New to Climentos? <a href="/login?view=register" data-auth-target="register">Create an account</a></p>
+  </section>
+
+  <section class="auth-panel" data-auth-panel="register" aria-labelledby="auth-register-heading" th:classappend="${activeView == 'register'} ? ' is-active' : ''">
+    <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#users"></use></svg> JOIN CLIMENTOS</span>
+    <h1 class="heading" id="auth-register-heading">Create your account</h1>
+    <p class="description">Set up your secure workspace in just a moment.</p>
+    <form th:action="@{/register}" th:object="${registrationForm}" method="post" data-password-form>
+<div class="form-field"><label for="register-name">Full name</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#user"></use></svg>
+ <input id="register-name" type="text" th:field="*{name}" placeholder="Your full name" autocomplete="name" required maxlength="100"></div><p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p></div>
+<div class="form-field"><label for="register-email">Work email</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#mail"></use></svg>
+ <input id="register-email" type="email" th:field="*{email}" placeholder="you@example.com" autocomplete="email" required maxlength="255"></div><p class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p></div>
+<div class="form-field"><label for="register-password">Password</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg>
+ <input id="register-password" type="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required minlength="8" maxlength="64" data-new-password><button type="button" class="toggle" data-toggle="register-password" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div><p class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></div>
+<div class="progress"><div class="progress-bar" data-strength-meter></div></div>
+<p class="field-hint" data-strength-label>Use 8–64 characters</p>
+<div style="height:16px"></div>
+<div class="form-field"><label for="register-confirmPassword">Confirm password</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg>
+ <input id="register-confirmPassword" type="password" name="confirmPassword" placeholder="Repeat your password" autocomplete="new-password" required data-confirm-password><button type="button" class="toggle" data-toggle="register-confirmPassword" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div><p class="field-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p></div>
+<p class="field-hint" data-match-hint role="status"></p>
+<button class="btn-primary" type="submit">Create Climentos account <svg class="icon " aria-hidden="true"><use href="/icons.svg#arrow-right"></use></svg></button>
+</form>
+    <p class="form-footer">Already have an account? <a href="/login" data-auth-target="login">Sign in</a></p>
+  </section>
+
+  <section class="auth-panel" data-auth-panel="forgot" aria-labelledby="auth-forgot-heading" th:classappend="${activeView == 'forgot'} ? ' is-active' : ''">
+    <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#key"></use></svg> ACCOUNT RECOVERY</span>
+    <h1 class="heading" id="auth-forgot-heading">Forgot your password?</h1>
+    <p class="description">Enter your account email. If an account exists, we'll send a secure reset link.</p>
+    <div class="notice" th:if="${param.sent != null}"><svg class="icon" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg><span>If an account exists for that address, a reset link will be sent. Please check your inbox and spam folder.</span></div>
+    <form th:action="@{/forgot-password}" method="post">
+<div class="form-field"><label for="forgot-email">Email address</label><div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#mail"></use></svg><input id="forgot-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="255"></div></div>
+<button type="submit" class="btn-primary">Send reset link <svg class="icon " aria-hidden="true"><use href="/icons.svg#arrow-right"></use></svg></button>
+</form>
+    <div class="help-card"><svg class="icon" aria-hidden="true"><use href="/icons.svg#shield"></use></svg><span>Reset links expire after 15 minutes and work only once.</span></div>
+    <div class="rule"></div>
+    <a class="back-link" href="/login" data-auth-target="login"><svg class="icon" aria-hidden="true"><use href="/icons.svg#arrow-left"></use></svg> Back to sign in</a>
+  </section>
+
+  <section class="auth-panel" data-auth-panel="reset" aria-labelledby="auth-reset-heading" th:if="${resetPasswordForm != null}" th:classappend="${activeView == 'reset'} ? ' is-active' : ''">
+    <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#lock"></use></svg> SECURE PASSWORD RESET</span>
+    <h1 class="heading" id="auth-reset-heading">Set a new password</h1>
+    <p class="description">Create a new password to regain access to your Climentos account.</p>
+    <form th:action="@{/reset-password}" th:object="${resetPasswordForm}" method="post" data-password-form>
+<input type="hidden" name="token" th:value="${token}">
+<div class="form-field"><label for="reset-password-input">New password</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg>
+ <input id="reset-password-input" type="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required minlength="8" maxlength="64" data-new-password><button type="button" class="toggle" data-toggle="reset-password-input" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div><p class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></div>
+<div class="progress"><div class="progress-bar" data-strength-meter></div></div>
+<p class="field-hint" data-strength-label>Use 8–64 characters</p>
+<div style="height:16px"></div>
+<div class="form-field"><label for="reset-confirmPassword">Confirm new password</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg>
+ <input id="reset-confirmPassword" type="password" name="confirmPassword" placeholder="Repeat new password" autocomplete="new-password" required data-confirm-password><button type="button" class="toggle" data-toggle="reset-confirmPassword" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div><p class="field-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p></div>
+<p class="field-hint" data-match-hint role="status"></p>
+<button type="submit" class="btn-primary">Update password <svg class="icon " aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg></button>
+</form>
+    <p class="form-footer"><a class="back-link" href="/login"><svg class="icon" aria-hidden="true"><use href="/icons.svg#arrow-left"></use></svg> Back to sign in</a></p>
+  </section>
+
+  <section class="auth-panel" data-auth-panel="invalid" aria-labelledby="auth-invalid-heading" th:if="${activeView == 'invalid'}" th:classappend="${activeView == 'invalid'} ? ' is-active' : ''">
+    <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#alert"></use></svg> LINK UNAVAILABLE</span>
+    <h1 class="heading" id="auth-invalid-heading">This link isn't valid</h1>
+    <p class="description">Your reset link may have expired or already been used. You can request a fresh one.</p>
+    <a href="/login?view=forgot" class="btn-primary">Request a new link <svg class="icon" aria-hidden="true"><use href="/icons.svg#arrow-right"></use></svg></a>
+    <p class="form-footer"><a href="/login">Return to sign in</a></p>
+  </section>
+</div></section>
+</main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard · Climentos</title><meta name="referrer" content="no-referrer"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/style.css"></head>
+<body class="portal">
+<header class="portal-nav"><div class="portal-nav-inner">
+<a class="brand" href="/dashboard"><span class="brand-mark"><svg class="icon " aria-hidden="true"><use href="/icons.svg#shield"></use></svg></span><span>Climentos</span></a>
+<div class="nav-right"><div class="mini-user"><span class="user-circle"><svg class="icon " aria-hidden="true"><use href="/icons.svg#user"></use></svg></span><span th:text="${user.name}">Member</span></div>
+<form th:action="@{/logout}" method="post"><button class="ghost-button" type="submit"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#logout"></use></svg><span>Log out</span></button></form></div>
+</div></header>
+<main class="portal-main">
+<div class="portal-heading"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#dashboard"></use></svg> Workspace / Overview</div>
+<section class="welcome"><div><span class="kicker"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#sparkles"></use></svg> YOUR WORKSPACE</span><h1>Welcome to Climentos, <span th:text="${user.name}">Member</span>!</h1><p>Your secure account portal is ready. You are signed in and your dashboard is protected with Spring Security.</p></div><div class="welcome-symbol"><svg class="icon " aria-hidden="true"><use href="/icons.svg#shield"></use></svg></div></section>
+<div class="portal-grid">
+<section class="panel"><div class="panel-head"><svg class="icon " aria-hidden="true"><use href="/icons.svg#user"></use></svg> Account details</div>
+<div class="profile-row"><span class="row-icon"><svg class="icon " aria-hidden="true"><use href="/icons.svg#user"></use></svg></span><div class="row-text"><small>FULL NAME</small><strong th:text="${user.name}">Member</strong></div></div>
+<div class="profile-row"><span class="row-icon"><svg class="icon " aria-hidden="true"><use href="/icons.svg#mail"></use></svg></span><div class="row-text"><small>EMAIL ADDRESS</small><strong th:text="${user.email}">member@example.com</strong></div></div>
+<div class="profile-row"><span class="row-icon"><svg class="icon " aria-hidden="true"><use href="/icons.svg#shield"></use></svg></span><div class="row-text"><small>ACCOUNT ROLE</small><strong th:text="${user.role}">USER</strong></div></div>
+</section>
+<section class="panel"><div class="panel-head"><svg class="icon " aria-hidden="true"><use href="/icons.svg#lock"></use></svg> Account security</div><span class="state-pill"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg> Authenticated session</span><div class="tips">
+<div class="tip"><svg class="icon " aria-hidden="true"><use href="/icons.svg#shield"></use></svg> <span>Your dashboard is only accessible to signed-in users.</span></div>
+<div class="tip"><svg class="icon " aria-hidden="true"><use href="/icons.svg#key"></use></svg> <span>Your password is stored as a BCrypt hash, not plain text.</span></div>
+<div class="tip"><svg class="icon " aria-hidden="true"><use href="/icons.svg#logout"></use></svg> <span>Use Log out when you're done, especially on a shared device.</span></div>
+</div></section>
+</div></main>
+<div class="portal-foot">Climentos · Authentication portal</div>
+</body></html>

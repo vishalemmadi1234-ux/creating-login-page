@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="referrer" content="no-referrer">
+ <title>Register · Climentos</title>
+ <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+ <link rel="stylesheet" href="/css/style.css">
+ <script src="/js/app.js" defer></script>
+</head>
+<body>
+<main class="auth-shell">
+<aside class="showcase">
+   <a class="brand" href="/" aria-label="Climentos home"><span class="brand-mark"><svg class="icon " aria-hidden="true"><use href="/icons.svg#shield"></use></svg></span><span>Climentos</span></a>
+   <div class="showcase-body">
+     <span class="kicker"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#sparkles"></use></svg> A smarter start</span>
+     <h1>One account.<br><em>Endless possibilities.</em></h1>
+     <p>Create your Climentos account and step into a seamless, secure digital workspace.</p>
+     <div class="mini-illustration" aria-hidden="true">
+       <div class="mini-ring mini-ring-a"></div><div class="mini-ring mini-ring-b"></div>
+       <div class="mini-core"><svg class="icon" aria-hidden="true"><use href="/icons.svg#user"></use></svg></div>
+       <div class="mini-satellite mini-satellite-a"><svg class="icon" aria-hidden="true"><use href="/icons.svg#check-circle"></use></svg></div>
+       <div class="mini-satellite mini-satellite-b"><svg class="icon" aria-hidden="true"><use href="/icons.svg#sparkles"></use></svg></div>
+       <div class="mini-spark mini-spark-a"></div><div class="mini-spark mini-spark-b"></div>
+     </div>
+   </div>
+   <div class="showcase-foot">Climentos · A more confident way to sign in</div>
+ </aside>
+<section class="auth-area"><div class="form-wrap">
+
+<span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="/icons.svg#users"></use></svg> Join Climentos</span>
+<h1 class="heading">Create your account</h1>
+<p class="description">Set up your secure workspace in just a moment.</p>
+<form th:action="@{/register}" th:object="${registrationForm}" method="post" data-password-form>
+<div class="form-field"><label for="name">Full name</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#user"></use></svg>
+ <input id="name" type="text" th:field="*{name}" placeholder="Your full name" autocomplete="name" required maxlength="100"></div><p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p></div>
+<div class="form-field"><label for="email">Work email</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#mail"></use></svg>
+ <input id="email" type="email" th:field="*{email}" placeholder="you@example.com" autocomplete="email" required maxlength="255"></div><p class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p></div>
+<div class="form-field"><label for="password">Password</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg>
+ <input id="password" type="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" required minlength="8" maxlength="64" data-new-password><button type="button" class="toggle" data-toggle="password" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div><p class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p></div>
+<div class="progress"><div class="progress-bar" data-strength-meter></div></div>
+<p class="field-hint" data-strength-label>Use 8–64 characters</p>
+<div style="height:16px"></div>
+<div class="form-field"><label for="confirmPassword">Confirm password</label>
+ <div class="field-control"><svg class="icon leading" aria-hidden="true"><use href="/icons.svg#lock"></use></svg>
+ <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Repeat your password" autocomplete="new-password" required data-confirm-password><button type="button" class="toggle" data-toggle="confirmPassword" aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true"><use href="/icons.svg#eye"></use></svg></button></div><p class="field-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p></div>
+<p class="field-hint" data-match-hint role="status"></p>
+<button class="btn-primary" type="submit">Create Climentos account <svg class="icon " aria-hidden="true"><use href="/icons.svg#arrow-right"></use></svg></button>
+</form>
+<p class="form-footer">Already have an account? <a href="/login">Sign in</a></p>
+
+</div></section>
+</main>
+</body>
+</html>
